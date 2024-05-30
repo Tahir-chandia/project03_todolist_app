@@ -66,28 +66,41 @@ let newTodo:string[] = todo.filter(val => val !== updateAns.update)
 
         
 
-if(todoOperations.operations == "delete")
-        {if(condition==true){
-        let removeeAns= await inquirer.prompt({
-        name:"remove",
-        type:"list",
-        message:"What You want to update ? ",
-        choices:todo.map(item=>item)})
-    
-        let confirmation = await inquirer.prompt(  {   
-        name:"final",
-        type:"confirm",
-        default:false,
-        message:"Do you confirm this ?"},)
+// if(todoOperations.operations == "delete")
+    if(todoOperations.operations=="delete"){
+        if(condition==true){
+     
+            let del = await inquirer.prompt({
+                name:"delete",
+                type:'list',
+                message:"Do you want to delete this from your todo: ",
+                choices:todo.map(items=>items)
+            })
 
-        let newTodo:string[] = todo.filter(val => val !== removeeAns.remove)
-        todo = [...newTodo]
-        condition = confirmation.final
-        for(let i =0;i<todo.length;i++){
-            todo.map(items => items);
-            console.log(todo[i])}}}
-        
 
+            let confirm2 = await inquirer.prompt({
+                name:"confirm",
+                type:"confirm",
+                message:"Do you want to confirm this",
+                default:false
+            })
+
+            condition= confirm2.confirm
+            
+            if(condition==true){
+                let newTodo:string[]=todo.filter(val => val !== del.delete)
+                todo = [...newTodo]
+                for(let i =0;i<todo.length;i++){
+                    todo.map(items => items);
+                    console.log(chalk.yellow(todo[i]))}
+                
+            }else{
+                for(let i =0;i<todo.length;i++){
+                    todo.map(items => items);
+                    console.log(chalk.yellow(todo[i]))}
+                    
+            }}}
+       
 if(todoOperations.operations == "view"){
     for(let i =0;i<todo.length;i++){
         todo.map(items => items);
