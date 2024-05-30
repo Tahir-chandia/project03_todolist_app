@@ -1,6 +1,6 @@
 {
   "name": "mt04_project04_todolist_app",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "main": "index.js",
   "type": "module",
   "bin": "index.js",
